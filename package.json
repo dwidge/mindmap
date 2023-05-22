@@ -1,0 +1,39 @@
+{
+  "name": "@dwidge/mindmap",
+  "version": "0.1.0",
+  "description": "",
+  "exports": {
+    "./*": "./lib/*.tsx"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "dev": "servey src=src/index.tsx env=REACT_APP_ dir=public port=3000",
+    "build": "buildy src=src/index.tsx env=REACT_APP_ dir=public out=build",
+    "start": "pnpx http-server build -o -p3000",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "DWJ",
+  "license": "BSL-1.0",
+  "devDependencies": {
+    "@dwidge/buildy": "^0.1.2",
+    "@types/react": "^18.0.34",
+    "@types/react-dom": "^18.0.11",
+    "@types/styled-components": "^5.1.26",
+    "d3": "^7.8.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-easy-panzoom": "^0.4.4",
+    "styled-components": "^5.3.9",
+    "typescript": "^5.0.4"
+  },
+  "peerDependencies": {
+    "d3": "^7.8.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-easy-panzoom": "^0.4.4",
+    "styled-components": "^5.3.9"
+  }
+}
