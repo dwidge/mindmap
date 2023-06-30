@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Fill, Center } from "../lib/Flex";
-import { rootTree, treeString } from "../lib/utils/treeString";
+import { Fill, Center, Vertical } from "../lib/Flex";
 import PanZoom from "../lib/PanZoom";
 import MindMap from "../lib/Mindmap";
 
@@ -24,7 +23,7 @@ const App: React.FC<{}> = () => {
       <Foreground>
         <Border>
           <PanZoom>
-            <MindMap tree={rootTree("root", treeString(treeText, "  "))} />
+            <MindMap tree={{ name: "root", children: treeText }} />
           </PanZoom>
         </Border>
       </Foreground>
@@ -45,7 +44,7 @@ const Border = styled(Fill)`
   }
 `;
 
-const Foreground = styled(Fill)`
+const Foreground = styled(Vertical)`
   background-color: cyan;
   height: 80%;
   min-height: 200px;

@@ -4,15 +4,15 @@
 
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { Item } from "./utils/treeString";
 import { Relative } from "./Flex";
 import render from "./utils/renderTree";
+import { TextNode, calcTreeTextNode, rootTree } from "./utils/TextNode";
 
-export default function MindMap({ tree }: { tree: Item }) {
+export default function MindMap({ tree }: { tree: TextNode }) {
   const svgRef = useRef(null);
 
   useEffect(() => {
-    render(svgRef.current, tree);
+    render(svgRef.current, rootTree(calcTreeTextNode(tree)));
   }, [tree]);
 
   return (
