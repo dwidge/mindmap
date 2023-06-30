@@ -1,29 +1,31 @@
-import React, { ReactNode } from "react";
+import React, { CSSProperties } from "react";
 import styled from "styled-components";
 import EasyPanZoom from "react-easy-panzoom";
-import { Relative, Square } from "./Flex";
+import { Aspect } from "./Aspect";
 
 export default function PanZoom({
   children,
-  size = ["100em", "100em"],
-  ...opts
-}: {
-  children: ReactNode;
-  size?: [string, string];
-}) {
+  style,
+  aspectRatio,
+}: React.PropsWithChildren<{
+  style?: CSSProperties;
+  aspectRatio?: number;
+}>) {
   return (
-    <Relative>
-      <FillZoom autoCenter {...opts}>
-        <Square size={size}>{children}</Square>
+    <Aspect aspectRatio={aspectRatio}>
+      <FillZoom style={style} autoCenter>
+        {children}
       </FillZoom>
-    </Relative>
+    </Aspect>
   );
 }
 
 const FillZoom = styled(EasyPanZoom)`
   position: absolute;
-  width: 100%;
-  height: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
   overflow: hidden;
   box-sizing: border-box;
 `;

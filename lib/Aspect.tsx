@@ -2,23 +2,32 @@ import React from "react";
 import styled from "styled-components";
 import { Fill } from "./Flex";
 
-export function Aspect({ a = 1, children }) {
+export function Aspect({
+  aspectRatio = 1,
+  children,
+}: React.PropsWithChildren<{ aspectRatio?: number }>) {
   return (
-    <Outer a={a}>
-      <Inner>{children}</Inner>
+    <Outer style={{ ["--aspectRatio" as string]: aspectRatio }}>
+      <Fill>{children}</Fill>
     </Outer>
   );
 }
 
 const Outer = styled.div`
-  width: 100%;
-  padding-top: ${({ a = 1 }) => (100 / a) | 0}%;
   position: relative;
-`;
-const Inner = styled(Fill)`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
+  display: grid;
+  flex: auto;
+
+  &:before {
+    content: "";
+    display: inline-block;
+    padding-top: calc((1 / (var(--aspectRatio))) * 100%);
+  }
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 `;

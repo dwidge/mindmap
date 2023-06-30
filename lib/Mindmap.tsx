@@ -44,6 +44,4 @@ const Svg = styled.svg`
     stroke-width: 2px;
     stroke-opacity: 0.2;
   }
-
-  background: silver;
 `;
