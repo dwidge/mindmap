@@ -4,9 +4,9 @@
 
 // ChatGPT
 
-import { treeString } from "./treeString";
+import { getTreeNodeString } from "./getTreeNodeString";
 
-describe("treeString", () => {
+describe("getTreeNodeString", () => {
   it("should return resursive object", () => {
     const input = `
 a
@@ -14,7 +14,7 @@ a
     c
   d
 `;
-    expect(treeString(input)).toStrictEqual([
+    expect(getTreeNodeString(input)).toStrictEqual([
       {
         name: "a",
         children: [
@@ -38,7 +38,7 @@ a
 
   it("should return empty array for empty input", () => {
     const input = "";
-    expect(treeString(input)).toStrictEqual([]);
+    expect(getTreeNodeString(input)).toStrictEqual([]);
   });
 
   it("should handle multiple levels of nesting", () => {
@@ -52,7 +52,7 @@ e
     g
       h
 `;
-    expect(treeString(input)).toStrictEqual([
+    expect(getTreeNodeString(input)).toStrictEqual([
       {
         name: "a",
         children: [
@@ -105,7 +105,7 @@ a
 
 
 `;
-    expect(treeString(input)).toStrictEqual([
+    expect(getTreeNodeString(input)).toStrictEqual([
       {
         name: "a",
         children: [
@@ -135,7 +135,7 @@ a
   d
 e
 `;
-    expect(treeString(input)).toStrictEqual([
+    expect(getTreeNodeString(input)).toStrictEqual([
       {
         name: "e",
         children: [],

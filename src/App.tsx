@@ -2,14 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { Center, Vertical } from "../lib/Flex";
 
-import { VictoryBar } from "victory";
 import MindmapDemo from "MindmapDemo";
 
 const App: React.FC<{}> = () => {
   return (
     <Background>
       <Foreground>
-        <VictoryBar />
         <MindmapDemo />
       </Foreground>
     </Background>
