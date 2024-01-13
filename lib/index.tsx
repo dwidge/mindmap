@@ -6,8 +6,8 @@ import MindMap, { MindmapProps } from "./Mindmap";
 
 export const withTextNode =
   (MindMap: React.FC<MindmapProps>) =>
-  ({ tree, ...props }: { tree: TextNode } & Omit<MindmapProps, "tree">) => {
-    const treeNode = useMemo(() => getTreeNodeTextNode(tree), []);
+  ({ text, ...props }: { text: TextNode } & Omit<MindmapProps, "tree">) => {
+    const treeNode = useMemo(() => getTreeNodeTextNode(text), []);
     return <MindMap tree={treeNode} {...props} />;
   };
 
@@ -35,7 +35,7 @@ export const withSelector =
   }: {
     select: [
       selectNode: TreeNode | undefined,
-      setSelectNode: (n?: TreeNode) => void
+      setSelectNode: (n?: TreeNode) => void,
     ];
   } & MindmapProps) => {
     const [treeNode, setTreeNode] = useState<TreeNode>(tree);

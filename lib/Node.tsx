@@ -2,38 +2,44 @@ import React from "react";
 import { Group } from "@visx/group";
 import { HierarchyPointNode } from "@visx/hierarchy/lib/types";
 import { TreeNode } from "./TreeNode";
-import { background, blue, white } from "./colours";
+import { splitLinesLimit } from "./splitLinesLimit";
 
 export function Node({ node, onClick }: GraphNode) {
-  const width = 40;
-  const height = 20;
+  const label = node.data.name;
+  const maxLength = Math.min(30, label.length);
+  const lines = splitLinesLimit(label, maxLength);
+  const width = maxLength / 4 + 2;
+  const height = lines.length;
   const centerX = -width / 2;
   const centerY = -height / 2;
+  const selected = !!node.data.style?.includes("select");
+  const parent = !!node.children;
 
   return (
-    <Group top={node.x} left={node.y}>
+    <Group
+      top={node.x}
+      left={node.y}
+      className={["node", selected && "selected", parent && "parent"].join(" ")}
+    >
+      <title>{label}</title>
       <rect
-        height={height}
-        width={width}
-        y={centerY}
-        x={centerX}
-        fill={background}
-        stroke={blue}
-        strokeWidth={node.data.style?.includes("select") ? 3 : 1}
-        strokeDasharray={node.children ? "" : "2,2"}
+        height={height + "em"}
+        width={width + "em"}
+        y={centerY + "em"}
+        x={centerX + "em"}
         rx={10}
         onClick={() => onClick(node.data)}
       />
-      <text
-        dy=".33em"
-        fontSize={9}
-        fontFamily="Arial"
-        textAnchor="middle"
-        style={{ pointerEvents: "none" }}
-        fill={white}
-      >
-        {node.data.name}
-      </text>
+      {lines.map((line, i) => (
+        <text
+          dy={i + 0.5 + 0.33 + centerY + "em"}
+          fontSize={9}
+          textAnchor="middle"
+          style={{ pointerEvents: "none" }}
+        >
+          {line}
+        </text>
+      ))}
     </Group>
   );
 }

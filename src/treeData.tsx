@@ -1,7 +1,7 @@
 import { TextNode } from "../lib/TextNode";
 import { TreeNode } from "../lib/TreeNode";
 
-export const treeText = `
+export const mindmapText = `
 a
   a1
     a1a
@@ -13,7 +13,8 @@ d
   d1 ddddddd ddddddd ddddddddd dddddddddd
   d2 2222222 2222222222 222222222222 2222222222222222222
 `;
-export const deepNode: TreeNode = {
+
+export const treeNode: TreeNode = {
   name: "Root",
   children: [
     {
@@ -32,7 +33,8 @@ export const deepNode: TreeNode = {
     },
   ],
 };
-const treeNode: TextNode = {
+
+export const textNode: TextNode = {
   name: "T",
   children: [
     {
@@ -40,7 +42,7 @@ const treeNode: TextNode = {
       children: [
         { name: "A1" },
         { name: "A2" },
-        { name: "A3", children: treeText },
+        { name: "A3", children: mindmapText },
         {
           name: "C",
           children: [
@@ -58,7 +60,7 @@ const treeNode: TextNode = {
                 },
                 {
                   name: "D3",
-                  children: [deepNode],
+                  children: [treeNode],
                 },
               ],
             },
@@ -73,4 +75,3 @@ const treeNode: TextNode = {
     },
   ],
 };
-export default treeNode;

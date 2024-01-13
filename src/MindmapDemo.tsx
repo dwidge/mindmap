@@ -4,7 +4,7 @@ import PanZoom from "../lib/PanZoom";
 import { MindMapSelector, MindMapText } from "../lib";
 import { Aspect } from "../lib/Aspect";
 import styled from "styled-components";
-import tree, { deepNode } from "treeData";
+import { treeNode, textNode } from "treeData";
 import { TreeNode } from "../lib/TreeNode";
 
 export default function MindmapDemo() {
@@ -14,30 +14,48 @@ export default function MindmapDemo() {
       <Border>
         <Aspect>
           <MindMapSelector
-            tree={deepNode}
+            tree={treeNode}
             select={[selectNode, setSelectNode]}
           />
         </Aspect>
+        {selectNode ? JSON.stringify(selectNode) : "No selection"}
+        <PanZoom style={{ background: "gray" }}>
+          <Square size={["200em", "200em"]}>
+            <MindMapText text={{ name: "root", children: [textNode] }} />
+          </Square>
+        </PanZoom>
       </Border>
-      {selectNode ? JSON.stringify(selectNode) : "No selection"}
-      <PanZoom style={{ background: "orange" }}>
-        <Square size={["100em", "100em"]}>
-          <MindMapText tree={{ name: "root", children: [tree] }} />
-        </Square>
-      </PanZoom>
     </Vertical>
   );
 }
 
 const Border = styled(Vertical)`
-  background: red;
+  background: pink;
   border: solid 5px yellow;
   border-radius: 20px;
   overflow: hidden;
 
-  .node circle {
+  .node text {
+    fill: green;
+    font-family: Arial;
+  }
+  .link {
+    fill: none;
+    stroke: purple;
+    stroke-width: 1;
   }
 
-  .node text {
+  .node rect {
+    fill: red;
+    stroke: yellow;
+    stroke-width: 1;
+  }
+
+  .node.parent rect {
+    stroke-dasharray: 2, 2;
+  }
+
+  .node.selected rect {
+    stroke-width: 3;
   }
 `;
