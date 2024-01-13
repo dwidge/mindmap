@@ -6,7 +6,7 @@ import { splitLinesLimit } from "./splitLinesLimit";
 
 export function Node({ node, onClick }: GraphNode) {
   const label = node.data.name;
-  const maxLength = Math.min(30, label.length);
+  const maxLength = Math.max(1, Math.min(30, label.length));
   const lines = splitLinesLimit(label, maxLength);
   const width = maxLength / 4 + 2;
   const height = lines.length;
